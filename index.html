@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="grandParent">
+    <div class="parent">
+        <div class="Input">
+            <h2>Enter Your Work:</h2>
+            <textarea id="clientInput"></textarea>
+        </div>
+        
+        <div class="Input">
+            <h2>Enter the text from which you want to compare</h2>
+            <textarea id="compareInput"></textarea>
+        </div>
+    </div>
+    <div class="parent">
+        <button onclick="compareText()">Submit</button>
+    </div>
+</div>
+    <p>Result: <span id="output"></span></p>
+    
+</body>
+</html>

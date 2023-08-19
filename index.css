@@ -1,0 +1,52 @@
+body, html {
+    display: flex;
+    font-size: 16px;
+    width: 100%;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    flex-direction: column;
+}
+
+.grandParent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    flex: 1; /* Expand to take all available vertical space */
+}
+
+.parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1; /* Expand to take all available vertical space */
+}
+
+h2 {
+    height: 75px;
+    padding: 25px;
+    margin: 0; /* Reset margin to remove default margin from headings */
+}
+
+.Input {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 60%; /* Adjust to your design preference */
+    margin: 20px;
+}
+
+/* Style for the input boxes */
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    height: 250px;
+}
+
+/* Style for the buttons */
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+}
