@@ -264,3 +264,54 @@ footer {
     margin-bottom: 10px;
   }
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+  transition: 0.3s;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  word-wrap: break-word;
+  max-width: 100%;
+  display: inline-block;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+img {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+}

@@ -187,25 +187,6 @@ async function handleExtractAndCompare() {
 }
 
 /**
- * Validates that required files are present
- * @param {File[]} pdfFiles - Array of PDF files
- * @param {File} docxFile - DOCX file
- * @throws {Error} If required files are missing
- */
-function validateFiles(pdfFiles, docxFile) {
-  if (!pdfFiles.length) {
-    throw new Error("Please upload at least one PDF file.");
-  }
-  if (!docxFile) {
-    throw new Error("Please upload a .docx file.");
-  }
-}
-
-/**
- * Extracts text from multiple PDF files and compares it with the text extracted from a DOCX file.
- * Updated to properly handle worker communication.
- */
-/**
  * Extracts text from multiple PDF files and compares it with the text extracted from a DOCX file.
  * Updated to properly handle worker communication.
  */
@@ -520,7 +501,7 @@ function combineWordsAndTagsInOrder(data) {
     // 1. This is not the last item
     // 3. Next item is also a word
     // 4. Current item's content is not a single character (like '/')
-    if (nextItem && currentItem.content.length > 1) {
+    if (nextItem) {
       result.push(" ");
     }
   }
