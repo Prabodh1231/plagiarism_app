@@ -15,6 +15,8 @@ onmessage = async function (event) {
     let docxTextWord = JSON.parse(JSON.stringify(docxArrayWord));
     docxTextWord = cleanDocxTextWord(docxTextWord);
 
+    let docxlength = docxTextWord.length;
+
     // Create rolling windows from the DOCX content for comparison
     let rollingWindows = createRollingWindows(docxTextWord, 11);
 
@@ -83,6 +85,7 @@ onmessage = async function (event) {
     // Send the final results back to the main thread
     postMessage({
       type: "result",
+      docxLength: docxlength,
       results: allResults,
     });
   } catch (error) {
