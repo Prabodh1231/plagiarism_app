@@ -18,7 +18,7 @@ onmessage = async function (event) {
     let docxlength = docxTextWord.length;
 
     // Create rolling windows from the DOCX content for comparison
-    let rollingWindows = createRollingWindows(docxTextWord, 11);
+    let rollingWindows = createRollingWindows(docxTextWord, 12);
 
     let colorIndex = 0;
     const colors = [
@@ -119,15 +119,27 @@ function cleanDocxTextWord(wordsArray) {
   });
 }
 
-function createRollingWindows(data, windowSize = 11) {
+function createRollingWindows(data, windowSize = 12) {
   let result = [];
 
   for (let i = 0; i <= data.length - windowSize; i++) {
     let windowSlice = data.slice(i, i + windowSize);
 
+    // Track unique contents and their corresponding IDs
+    let uniqueContents = new Set();
+    let uniqueIds = [];
+
+    windowSlice.forEach((item) => {
+      // Only add the ID if we haven't seen this content before
+      if (!uniqueContents.has(item.content)) {
+        uniqueContents.add(item.content);
+        uniqueIds.push(item.id);
+      }
+    });
+
     result.push({
-      ids: windowSlice.map((item) => item.id),
-      contents: windowSlice.map((item) => item.content),
+      ids: uniqueIds,
+      contents: Array.from(uniqueContents),
     });
   }
 
@@ -193,7 +205,7 @@ async function extractTextFromPDFBuffer(arrayBuffer, filename) {
 function slidingWindow(pdfText) {
   const pdfTextArray = pdfText.split(/\s+/).filter((word) => word.length > 0);
   const result = [];
-  const windowSize = 10;
+  const windowSize = 12;
 
   // Use a more efficient approach for large documents
   if (pdfTextArray.length > 10000) {

@@ -83,6 +83,7 @@ const handleFilePreview = debounce((files, previewElement) => {
 
     const nameCell = document.createElement("td");
     nameCell.textContent = file.name;
+    nameCell.classList.add("word-wrap");
 
     const sizeCell = document.createElement("td");
     const sizeKB = (file.size / 1024).toFixed(2);
