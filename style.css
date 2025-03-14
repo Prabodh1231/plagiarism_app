@@ -582,6 +582,7 @@ footer {
      ============================================================ */
 table {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   background-color: #fff;
   margin-top: 20px;

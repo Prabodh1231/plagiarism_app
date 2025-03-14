@@ -211,7 +211,13 @@ async function handleExtractAndCompare() {
  * @param {File} docxFile - The DOCX file checked.
  * @returns {string} - HTML string for the summary report.
  */
-function generateSummaryReportHTML(results, pdfFiles, docxFile, docxlength) {
+function generateSummaryReportHTML(
+  results,
+  pdfFiles,
+  docxFile,
+  docxlength
+  // docxArrayWordId
+) {
   const highlightedSectionsCount = results.length;
   const pdfFileNames = pdfFiles.map((file) => file.name).join(", ");
   const docxFileName = docxFile ? docxFile.name : "N/A";
@@ -256,6 +262,50 @@ function generateSummaryReportHTML(results, pdfFiles, docxFile, docxlength) {
         <h3>Detailed Highlighted Text:</h3>
       </div>
     `;
+
+  let pdfSummary = results.map((item) => {
+    let pdfName = item.file;
+    let pdfColor = item.color.hex;
+    // let similarWord = [];
+    // docxArrayWordId.forEach((wordObj) => {
+    //   if (item.Ids.includes(wordObj.id)) {
+    //     similarWord.push(wordObj.content);
+    //   }
+    // });
+
+    let pdfPercentage = parseFloat(
+      ((item.Ids.length / docxlength) * 100).toFixed(2)
+    );
+
+    return {
+      name: pdfName,
+      // similarWords: similarWord,
+      color: pdfColor,
+      percentage: pdfPercentage,
+    };
+  });
+
+  function createTable(data) {
+    let tableHTML = '<table border="1" cellpadding="10">';
+
+    // Table header
+    tableHTML += "<tr><th>PDF Name</th><th>Color</th><th>Percentage</th></tr>";
+
+    // Table rows
+    data.forEach((row) => {
+      tableHTML += `<tr>
+            <td>${row.name}</td>
+            <td style="background-color:${row.color}">${row.color}</td>
+            <td>${row.percentage}%</td>
+        </tr>`;
+    });
+
+    tableHTML += "</table> <br> <hr/> <br>";
+
+    return tableHTML;
+  }
+
+  summaryHTML += createTable(pdfSummary);
   return summaryHTML;
 }
 
@@ -302,6 +352,7 @@ async function extractTextAndCompare(pdfFiles, docxFile) {
               pdfFiles,
               docxFile,
               docxlength
+              // docxArray.words
             );
 
             resultOutput.innerHTML = summaryReportHTML + highlightedTextHTML;
