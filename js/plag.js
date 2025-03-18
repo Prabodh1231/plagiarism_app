@@ -372,8 +372,9 @@ async function extractTextAndCompare(pdfFiles, docxFile) {
       worker.onerror = function (error) {
         console.error("Worker error event:", error);
         reject(new Error(`Worker error: ${error.message}`));
-      }; // Read all PDF files as ArrayBuffers before sending to worker
+      };
 
+      // Read all PDF files as ArrayBuffers before sending to worker
       Promise.all(
         pdfFiles.map(async (file) => {
           return {
@@ -590,7 +591,6 @@ function addSpanTagsAndModify(array, allResults) {
     if (matchingResult) {
       // Wrap the content in a span tag with the color from the matching result
       const modifiedContent = `<span style="background-color: ${matchingResult.color.hex}">${item.content}</span>`;
-      console.log(modifiedContent);
       return {
         ...item,
         content: modifiedContent,
