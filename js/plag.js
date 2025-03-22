@@ -2,7 +2,7 @@
  * This script handles the drag-and-drop functionality for PDF and DOCX files,
  * extracts text from the files, and compares the text for plagiarism detection.
  * @author [Prabodh Singh]
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 // DOM element references
@@ -63,8 +63,9 @@ const handleFilePreview = debounce((files, previewElement) => {
   if (!previewElement) {
     console.error(`Preview element not found.`);
     return;
-  } // Clear previous preview
+  }
 
+  // Clear previous preview content
   previewElement.innerHTML = "";
 
   if (!files || files.length === 0) return;
@@ -131,25 +132,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const uploadAreaId = event.currentTarget.id;
 
     if (uploadAreaId === "uploadAreaPdf") {
-      uploadedFiles.pdfFiles = files.filter(
+      const newPdfFiles = files.filter(
         (file) => file.type === "application/pdf"
       );
+      uploadedFiles.pdfFiles = [
+        ...(uploadedFiles.pdfFiles || []),
+        ...newPdfFiles,
+      ];
       handleFilePreview(uploadedFiles.pdfFiles, previewPdf);
     } else if (uploadAreaId === "uploadAreaDocx") {
       uploadedFiles.docxFile =
         files.find((file) => file.name.endsWith(".docx")) || null; // Ensure null if no docx
       handleFilePreview([uploadedFiles.docxFile].filter(Boolean), previewDocx); // Handle null docxFile correctly
     }
-  }; // Add event listeners to upload areas -  More efficient to loop and bind once
+  };
 
+  // Add event listeners to upload areas -  More efficient to loop and bind once
   [uploadAreaPdf, uploadAreaDocx].forEach((uploadArea) => {
     uploadArea.addEventListener("dragover", handleDragOver);
     uploadArea.addEventListener("dragleave", handleDragLeave);
     uploadArea.addEventListener("drop", handleDrop);
-  }); // File input event handlers for manual file selection - Directly use handleFilePreview
+  });
 
+  // File input event handlers for manual file selection - Directly use handleFilePreview
   fileInputPdf.addEventListener("change", (event) => {
-    uploadedFiles.pdfFiles = Array.from(event.target.files); // Update global state
+    uploadedFiles.pdfFiles = [
+      ...(uploadedFiles.pdfFiles || []),
+      ...Array.from(event.target.files),
+    ]; // Update global state
     handleFilePreview(uploadedFiles.pdfFiles, previewPdf);
   });
 
@@ -157,11 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
     uploadedFiles.docxFile = event.target.files[0] || null; // Update global state, handle no file selected
     handleFilePreview([uploadedFiles.docxFile].filter(Boolean), previewDocx);
   });
+
   /**
    * Handle plagiarism check button click - No major changes here, good structure
    * Initiates text extraction and comparison process
    */
-
   checkPlagiarismButton.addEventListener("click", async () => {
     try {
       await handleExtractAndCompare(); // Renamed function for clarity
@@ -430,8 +440,9 @@ async function extractDocxText(file) {
 
 function convertToObjects(mammothString) {
   let id = 0;
-  const result = []; // List of valid HTML tags based on Mammoth.js output
+  const result = [];
 
+  // List of valid HTML tags based on Mammoth.js output
   const validTags = [
     "h1",
     "h2",
@@ -458,8 +469,9 @@ function convertToObjects(mammothString) {
     "blockquote", // Blockquotes
     "pre",
     "code", // Code
-  ]; // Helper function to find the next valid tag
+  ];
 
+  // Helper function to find the next valid tag
   function findNextValidTag(str, startPos) {
     let pos = startPos;
     while (pos < str.length) {
@@ -476,8 +488,9 @@ function convertToObjects(mammothString) {
       pos++;
     }
     return -1;
-  } // Helper function to process a single string
+  }
 
+  // Helper function to process a single string
   function processString(str) {
     const result = [];
     let currentPosition = 0;
@@ -490,13 +503,13 @@ function convertToObjects(mammothString) {
           // We're at a valid tag
           const tagEnd = str.indexOf(">", currentPosition);
           const tagContent = str.substring(currentPosition, tagEnd + 1);
-          const tagMatch = tagContent.match(/^<\/?([a-zA-Z0-9]+)/);
+          // const tagMatch = tagContent.match(/^<\/?([a-zA-Z0-9]+)/);
 
           const tagObject = {
             id: id++,
             type: "tag",
             content: tagContent,
-            tagName: tagMatch[1],
+            // tagName: tagMatch[1],
           };
 
           result.push(tagObject);
@@ -553,7 +566,8 @@ function convertToObjects(mammothString) {
     }
 
     return result;
-  } // Process each item in the input array
+  }
+  // Process each item in the input array
 
   const objects = processString(mammothString);
   result.push(...objects);
@@ -571,7 +585,7 @@ function separateWordsAndTags(inputArray) {
         id: item.id,
         content: item.content,
         modified: false,
-        color: "white",
+        // color: "white",
       });
     } else if (item.type === "tag") {
       tags.push({ id: item.id, content: item.content });
@@ -595,7 +609,7 @@ function addSpanTagsAndModify(array, allResults) {
         ...item,
         content: modifiedContent,
         modified: true,
-        color: matchingResult.color.name,
+        // color: matchingResult.color.name,``
       };
     }
     return item; // Return the item unchanged if no matching result or already modified

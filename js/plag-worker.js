@@ -109,7 +109,7 @@ function cleanDocxTextWord(wordsArray) {
       item.content = cleanedContent;
     }
     delete item.modified; // Remove the 'modified' property if it exists
-    delete item.color; // Remove the 'color' property if it exists
+    // delete item.color; // Remove the 'color' property if it exists
   });
 
   // Filter out items that have only special characters in 'content'
