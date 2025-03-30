@@ -1,7 +1,8 @@
-const CACHE_NAME = "my-site-cache-v2";
+const CACHE_NAME = "my-site-cache-v3";
 const urlsToCache = [
   "/plagisrism_app/",
   "/plagisrism_app/index.html",
+  //   "/plagisrism_app/service-worker.js",
   "/plagisrism_app/style.css",
   "/plagisrism_app/js/plag.js",
   "/plagisrism_app/js/plag-worker.js",
@@ -10,8 +11,6 @@ const urlsToCache = [
   "/plagisrism_app/js/pdf.worker.mjs",
   "/plagisrism_app/images/icon512.png",
   "/plagisrism_app/images/icon128.png",
-
-  // Add all your JS files, worker files, and assets here
 ];
 
 // Install the service worker and cache all specified files
