@@ -2,7 +2,6 @@ const CACHE_NAME = "my-site-cache-v3";
 const urlsToCache = [
   "/plagisrism_app/",
   "/plagisrism_app/index.html",
-  //   "/plagisrism_app/service-worker.js",
   "/plagisrism_app/style.css",
   "/plagisrism_app/js/plag.js",
   "/plagisrism_app/js/plag-worker.js",
