@@ -1,14 +1,14 @@
 // service-worker.js
 const CACHE_NAME = "my-site-cache-v1";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/js/plag.js",
-  "/js/plag-worker.js",
-  "/js/mammoth.browser.js",
-  "/js/pdf.mjs",
-  "/js/pdf.worker.mjs",
+  "https://prabodh1231.github.io/plagisrism_app/",
+  "https://prabodh1231.github.io/plagisrism_app/index.html",
+  "https://prabodh1231.github.io/plagisrism_app/style.css",
+  "https://prabodh1231.github.io/plagisrism_app/js/plag.js",
+  "https://prabodh1231.github.io/plagisrism_app/js/plag-worker.js",
+  "https://prabodh1231.github.io/plagisrism_app/js/mammoth.browser.js",
+  "https://prabodh1231.github.io/plagisrism_app/js/pdf.mjs",
+  "https://prabodh1231.github.io/plagisrism_app/js/pdf.worker.mjs",
 
   // Add all your JS files, worker files, and assets here
 ];
