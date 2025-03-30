@@ -16,8 +16,10 @@ However, access to such tools varies. While many institutions provide access to 
 
 ### Key Technologies:
 
+- **HTML/CSS/JavaScript**: Core technologies for building the user interface.
 - **PDF.js**: Extracts text from uploaded PDF files.
 - **Mammoth.js**: Converts DOCX files to HTML while preserving formatting.
+- **Web Workers**: Offload data processing to prevent UI blocking and ensure a responsive user experience.
 
 By combining these technologies, the tool accurately extracts, compares, and displays results.
 
@@ -37,18 +39,27 @@ By combining these technologies, the tool accurately extracts, compares, and dis
 
 #### **DOCX Processing**
 
-- **Conversion**: DOCX files are converted to HTML using **Mammoth.js**. The HTML preserves the document’s structure.
-- **Parsing**: HTML is parsed into an array of objects with the following keys:
-  - `id`: Unique identifier.
-  - `type`: word or tag
-  - `content`: Text content.
-  - `modified`: Indicates plagiarism detection (`true/false`).
+- **Conversion**: DOCX files are converted to HTML fromate using **Mammoth.js** ensuring the document’s structure and formatting are accurately preserved.
+- **Parsing**: The resulting HTML is parsed into an organized array of objects, each containing:
+  - `id`: A unique identifier for tracking purposes.
+  - `type`: Indicates whether the object is a word or an HTML tag.
+  - `content`: The textual content or tag data.
+  - `modified`: A Boolean value (true/false) to flag plagiarism detection.
+
+#### **Segmentation**:
+
+Objects are categorised into words and tags based on their **type**. This categorisation help us send only the words to the web worker for further processing.
 
 #### **Text Cleaning:**
 
-- Text is normalized (lowercased, special characters removed).
-- Segmentation using a rolling window method (currently of 12 words for efficient comparison).
-- Duplicate segments are removed for optimized processing.
+- Text is normalized — converted to lowercase and stripped of special characters.
+- Whitespace and redundant formatting are removed.
+
+#### **Rolling Window Segmentation**
+
+- Text is divided into overlapping segments using a rolling window technique (currently set to 12 words).
+
+- Duplicate words within segments are eliminated to reduce redundancy and optimize processing.
 
 ---
 
@@ -67,8 +78,11 @@ By combining these technologies, the tool accurately extracts, compares, and dis
   - Matches are identified if they meet a predefined similarity threshold (e.g., 66.66%).
   - If matches meets the threshold, IDs of the matches are stored.
 - **Match Tracking**:
-  - Matching segments' IDs, colors, and PDF names are stored in a result array.
-  - The system updates a progress bar to display real-time processing.
+  - If a match is found, the corresponding DOCX segment's ID is flagged.
+  - The result array stores:
+    - Matched segment IDs.
+    - Matching PDF name.
+    - Assigned highlight color.
 
 ---
 

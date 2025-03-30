@@ -1,3 +1,22 @@
+// main.js
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register(
+        "https://prabodh1231.github.io/plagisrism_app/service-worker.js"
+      )
+      .then((registration) => {
+        console.log(
+          "ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      })
+      .catch((error) => {
+        console.log("ServiceWorker registration failed: ", error);
+      });
+  });
+}
+
 /**
  * This script handles the drag-and-drop functionality for PDF and DOCX files,
  * extracts text from the files, and compares the text for plagiarism detection.
