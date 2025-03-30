@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-site-cache-v3";
+const CACHE_NAME = "my-site-cache-v4";
 const urlsToCache = [
   "/plagisrism_app/",
   "/plagisrism_app/index.html",
@@ -32,21 +32,30 @@ self.addEventListener("fetch", (event) => {
       }
 
       // If not in cache, fetch from network
-      return fetch(event.request).then((response) => {
-        // Check if we received a valid response
-        if (!response || response.status !== 200 || response.type !== "basic") {
+      return fetch(event.request)
+        .then((response) => {
+          // Check if we received a valid response
+          if (
+            !response ||
+            response.status !== 200 ||
+            response.type !== "basic"
+          ) {
+            return response;
+          }
+
+          // Clone the response as it's a stream that can only be consumed once
+          const responseToCache = response.clone();
+
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+
           return response;
-        }
-
-        // Clone the response as it's a stream that can only be consumed once
-        var responseToCache = response.clone();
-
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
+        })
+        .catch((error) => {
+          console.error("Fetch failed:", error);
+          // You could return a custom offline page here
         });
-
-        return response;
-      });
     })
   );
 });
@@ -57,11 +66,9 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
+        cacheNames
+          .filter((cacheName) => cacheWhitelist.indexOf(cacheName) === -1)
+          .map((cacheName) => caches.delete(cacheName))
       );
     })
   );
