@@ -1,15 +1,15 @@
 const CACHE_NAME = "my-site-cache-v6";
 const urlsToCache = [
-  "/prabodh1231.github.io/plagisrism_app/",
-  "/prabodh1231.github.io/plagisrism_app/index.html",
-  "/prabodh1231.github.io/plagisrism_app/style.css",
-  "/prabodh1231.github.io/plagisrism_app/js/plag.js",
-  "/prabodh1231.github.io/plagisrism_app/js/plag-worker.js",
-  "/prabodh1231.github.io/plagisrism_app/js/mammoth.browser.js",
-  "/prabodh1231.github.io/plagisrism_app/js/pdf.mjs",
-  "/prabodh1231.github.io/plagisrism_app/js/pdf.worker.mjs",
-  "/prabodh1231.github.io/plagisrism_app/images/icon512.png",
-  "/prabodh1231.github.io/plagisrism_app/images/icon128.png",
+  "/plagisrism_app/",
+  "/plagisrism_app/index.html",
+  "/plagisrism_app/style.css",
+  "/plagisrism_app/js/plag.js",
+  "/plagisrism_app/js/plag-worker.js",
+  "/plagisrism_app/js/mammoth.browser.js",
+  "/plagisrism_app/js/pdf.mjs",
+  "/plagisrism_app/js/pdf.worker.mjs",
+  "/plagisrism_app/images/icon512.png",
+  "/plagisrism_app/images/icon128.png",
 ];
 
 // Install the service worker and cache all specified files

@@ -1,7 +1,8 @@
 {
   "name": "Plagiarism Checker",
   "short_name": "PlagCheck",
-  "start_url": "/prabodh1231.github.io/plagisrism_app/index.html",
+  "scope": "/plagisrism_app/",
+  "start_url": "/plagisrism_app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4285f4",
