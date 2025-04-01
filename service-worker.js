@@ -1,15 +1,15 @@
 const CACHE_NAME = "my-site-cache-v13";
 const urlsToCache = [
-  "/plagisrism_app/",
-  "/plagisrism_app/index.html",
-  "/plagisrism_app/style.css",
-  "/plagisrism_app/js/plag.js",
-  "/plagisrism_app/js/plag-worker.js",
-  "/plagisrism_app/js/mammoth.browser.js",
-  "/plagisrism_app/js/pdf.mjs",
-  "/plagisrism_app/js/pdf.worker.mjs",
-  "/plagisrism_app/images/icon512.png",
-  "/plagisrism_app/images/icon128.png",
+  "/plagiarism_app/",
+  "/plagiarism_app/index.html",
+  "/plagiarism_app/style.css",
+  "/plagiarism_app/js/plag.js",
+  "/plagiarism_app/js/plag-worker.js",
+  "/plagiarism_app/js/mammoth.browser.js",
+  "/plagiarism_app/js/pdf.mjs",
+  "/plagiarism_app/js/pdf.worker.mjs",
+  "/plagiarism_app/images/icon512.png",
+  "/plagiarism_app/images/icon128.png",
 ];
 
 // Install the service worker and cache all specified files

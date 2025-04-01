@@ -1,19 +1,19 @@
 {
   "name": "Plagiarism Checker",
   "short_name": "PlagCheck",
-  "scope": "/plagisrism_app/",
-  "start_url": "/plagisrism_app/",
+  "scope": "/plagiarism_app/",
+  "start_url": "/plagiarism_app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#805394",
   "icons": [
     {
-      "src": "/plagisrism_app/images/icon128.png",
+      "src": "/plagiarism_app/images/icon128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "/plagisrism_app/images/icon512.png",
+      "src": "/plagiarism_app/images/icon512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

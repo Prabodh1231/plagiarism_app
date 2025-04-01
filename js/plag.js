@@ -2,7 +2,7 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/plagisrism_app/service-worker.js")
+      .register("/plagiarism_app/service-worker.js")
       .then((registration) => {
         console.log(
           "ServiceWorker registration successful with scope: ",
