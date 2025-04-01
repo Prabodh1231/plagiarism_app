@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-site-cache-v11";
+const CACHE_NAME = "my-site-cache-v13";
 const urlsToCache = [
   "/plagisrism_app/",
   "/plagisrism_app/index.html",
