@@ -5,7 +5,7 @@
   "start_url": "/plagisrism_app/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#e91e63",
+  "theme_color": "#9c27b0",
   "icons": [
     {
       "src": "/plagisrism_app/images/icon128.png",
